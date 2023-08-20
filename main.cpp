@@ -1,4 +1,6 @@
 #include "dash.hpp"
+#include <string>
+
 
 int main(int argc, char **argv)
 {
@@ -10,6 +12,4 @@ int main(int argc, char **argv)
 	dash::rectangle_empty(program.largest_rectangle);
 	inputMap = dash::openInputMap(argv[1]);
 	dash::createHeightMap(inputMap, program);
-
-	return (EXIT_SUCCESS);
 }

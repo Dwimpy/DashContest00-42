@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+        "*.c": "c",
+        "*.cpp": "cpp",
+        "*.hpp": "cpp",
+        "*.h": "c",
+        "Makefile": "makefile",
+        "*.sh": "shellscript"
+    }
+}

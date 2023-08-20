@@ -2,17 +2,6 @@
 
 namespace dash
 {
-	static inline void  set_triangle(struct rectangle &largest_rectangle, int row_index, int current_bar_index, int top_left_x, int top_left_y, int area)
-	{
-		largest_rectangle = (struct rectangle){
-			.top_left_x = top_left_x,
-			.top_left_y = top_left_y,
-			.bottom_right_x = current_bar_index - 1,
-			.bottom_right_y = row_index,
-			.area = area
-		};
-	}
-
 	static void  area_of_a_rectangle(struct program& program, int row_index, int current_bar_index)
 	{
 		int height = program.histogram[program.histogram_indices.top()];
@@ -21,10 +10,12 @@ namespace dash
 		// area = height * width. The width is the current index minus the index of the previous bar - 1.
 		int area = height * width;
 
+		if (area < program.largest_rectangle.area)
+			return ;
+		int	top_left_x = current_bar_index - width;
+		int	top_left_y = row_index - height + 1;
 		if (area == program.largest_rectangle.area)
 		{
-			int	top_left_x = current_bar_index - width;
-			int	top_left_y = row_index - height + 1;
 			if (top_left_y > program.largest_rectangle.top_left_y)
 				return ;
 			else if (top_left_y == program.largest_rectangle.top_left_y)
@@ -37,13 +28,14 @@ namespace dash
 						return ;
 				}
 			}
-			set_triangle(program.largest_rectangle, row_index, current_bar_index, top_left_x, top_left_y, area);
 		}
-		else if (area > program.largest_rectangle.area)
-		{
-			set_triangle(program.largest_rectangle, row_index, current_bar_index, \
-				current_bar_index - width, row_index - height + 1, area);
-		}
+		program.largest_rectangle = (struct rectangle){
+			.top_left_x = top_left_x,
+			.top_left_y = top_left_y,
+			.bottom_right_x = current_bar_index - 1,
+			.bottom_right_y = row_index,
+			.area = area
+		};
 	}
 
 	void	largest_area_from_histogram(struct program& program, int row_index)

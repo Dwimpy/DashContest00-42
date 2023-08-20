@@ -28,6 +28,8 @@ namespace dash
 
 	void	rectangle_print(struct rectangle &rectangle);
 
+	void	rectangle_print_corners(struct rectangle &rectangle);
+
 	struct  program
 	{
 		std::stack<int>		histogram_indices;

@@ -2,7 +2,12 @@ NAME	:= bsq
 
 CC		:= c++
 RM		:= rm
-FLAGS	:= -g -std=c++11 #-Wall -Werror -Wextra
+CFLAGS	:= -std=c++11 -Wall -Werror -Wextra
+
+ifdef FSANITIZE
+	CFLAGS+= -g3 -fsanitize=address
+	LDFLAGS+= -g3 -fsanitize=address
+endif
 
 INCLUDE := ./include
 SRC_DIR	:= ./src
@@ -19,10 +24,10 @@ OBJS    := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 all: $(NAME) $(MAINFILE)
 
 $(NAME):	$(OBJS) $(MAINFILE)
-	$(CC) $(HEADERS) $(OBJS) $(MAINFILE) -o $(NAME) $(FLAGS)
+	$(CC) $(HEADERS) $(OBJS) $(MAINFILE) -o $(NAME) $(CFLAGS)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) $(HEADERS)  -c $< -o $@ $(FLAGS)
+	$(CC) $(HEADERS)  -c $< -o $@ $(CFLAGS)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

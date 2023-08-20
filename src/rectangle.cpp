@@ -19,4 +19,10 @@ namespace dash
 		std::cout << "Bottom right: (" << rectangle.bottom_right_x << ", " << rectangle.bottom_right_y << ")" << std::endl;
 		std::cout << "Area: " << rectangle.area << std::endl;
 	}
+
+	void	rectangle_print_corners(struct rectangle &rectangle)
+	{
+		std::cout << rectangle.top_left_y << ',' << rectangle.top_left_x << \
+			'|' << rectangle.bottom_right_y << ',' << rectangle.bottom_right_x << std::endl;
+	}
 } // namespace dash

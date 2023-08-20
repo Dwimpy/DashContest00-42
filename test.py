@@ -68,6 +68,7 @@ def maximal_rectangle(matrix):
                 heights[j] += 1
         
         max_area = max(max_area, largest_rectangle_histogram(heights))
+        print(heights)
     
     return max_area, heights
 
@@ -88,6 +89,4 @@ matrix = [
 print("Original matrix:")
 print_matrix(matrix)
 largest_area, new_heights = maximal_rectangle(matrix)
-print("\nProcessed heights:")
-print(new_heights)
 print("\nLargest area:", largest_area)

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <random>
+#include <vector>
+#include <ostream>
 
 class RandomMapGenerator
 {
@@ -13,7 +15,7 @@ class RandomMapGenerator
 	void	setObstacleProbability(double obstacleProbability);
 	void	generateMap();
 	void	printMap();
-
+	void	outputMapToFile();
   private:
 	double	getRandomDouble();
 

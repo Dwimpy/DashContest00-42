@@ -1,4 +1,4 @@
-NAME	:= bsq
+NAME	:= rng
 
 CC		:= c++
 RM		:= rm
@@ -11,7 +11,7 @@ MAINFILE := main.cpp
 
 HEADERS := -I $(INCLUDE)
 
-SRC		:= helper_functions.cpp RandomMapGenerator.cpp
+SRC		:= RandomMapGenerator.cpp
 
 SRCS    := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(SRC))
 OBJS    := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))

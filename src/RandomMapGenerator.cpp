@@ -1,5 +1,7 @@
 #include "RandomMapGenerator.hpp"
+#include <fstream>
 #include <iostream>
+#include <ostream>
 
 RandomMapGenerator::RandomMapGenerator(): _gridSize(2), _obstacleProbability(10.0), _distribution(0, 1)
 {
@@ -84,6 +86,25 @@ void RandomMapGenerator::generateMap()
 				line.emplace_back('o');
 		}
 		_map.emplace_back(line);
+	}
+}
+
+void RandomMapGenerator::outputMapToFile(void)
+{
+	std::ofstream outFile("map.txt");
+
+	if (!outFile.is_open())
+	{
+		std::cerr << "Output file didn't open, exiting" << std::endl;
+		exit(1);
+	}
+	for (const auto& row : _map)
+	{
+		for (char c : row)
+		{
+			outFile << c;
+		}
+		outFile  << '\n';
 	}
 }
 

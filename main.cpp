@@ -1,23 +1,47 @@
-#include "dash.hpp"
+#include "RandomMapGenerator.hpp"
+#include <ios>
 #include <iostream>
+#include <sstream>
+#include <string>
 
+bool	isFloat(const std::string &str)
+{
+	std::istringstream	iss(str);
+	double				value;
+	iss >> std::noskipws >> value;
+	if (!iss.eof() || iss.fail())
+		return (false);
+	return (true);
+}
+
+bool	isInt(const std::string &str)
+{
+	try{
+		std::stoi(str);
+		return (true);
+	}catch (...) {
+		return (false);
+	}
+}
 
 
 int main(int argc, char **argv)
 {
-	(void) argc;
-	(void) argv;
-	std::ifstream			inputMap;
-	std::string 			lineData;
-	dash::Buffer			dataBuffer;
 	RandomMapGenerator		rng;
 
-	inputMap = dash::openInputMap("map.txt");
-	dash::createHeightMap(inputMap, dataBuffer);
-	std::cout << "\n\n\n";
-	rng.setGridSize(10);
-	rng.setObstacleProbability(0.15);
-	rng.generateMap();
-	rng.printMap();
-	return (EXIT_SUCCESS);
+	if (argc == 3)
+	{
+		if (!isInt(argv[1]) || !isFloat(argv[2]))
+		{
+			std::cerr << "Incorrect input paramterers" << std::endl;
+			return (EXIT_FAILURE);
+		}
+		rng.setGridSize(std::stoi(argv[1]));
+		rng.setObstacleProbability(std::stof(argv[2]));
+		rng.generateMap();
+		rng.printMap();
+		rng.outputMapToFile();
+			return (EXIT_SUCCESS);
+	}
+	return (EXIT_FAILURE);
 }

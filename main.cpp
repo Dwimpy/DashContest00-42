@@ -1,17 +1,15 @@
 #include "dash.hpp"
 
-
-
 int main(int argc, char **argv)
 {
-	(void) argc;
-	(void) argv;
+	if (argc != 2)
+		return EXIT_FAILURE;
+	struct dash::program	program;
 	std::ifstream			inputMap;
-	std::string 			lineData;
-	dash::Buffer			dataBuffer;
 
-	inputMap = dash::openInputMap("map.txt");
-	dash::createHeightMap(inputMap, dataBuffer);
+	dash::rectangle_empty(program.largest_rectangle);
+	inputMap = dash::openInputMap(argv[1]);
+	dash::createHeightMap(inputMap, program);
 
 	return (EXIT_SUCCESS);
 }

@@ -13,27 +13,33 @@ std::ifstream	dash::openInputMap(std::string const &fileName)
 	return (inputMap);
 }
 
-void	dash::createHeightMap(std::ifstream &inputMap, Buffer &buffer)
+void	dash::createHeightMap(std::ifstream &inputMap, struct program &program)
 {
 	std::string	lineData;
 	size_t		lineDataSize;
+
 	std::getline(inputMap, lineData);
 	for (char elem : lineData)
 		if (elem == '.')
-			buffer.emplace_back(1);
+			program.histogram.emplace_back(1);
 		else
-			buffer.emplace_back(0);
+			program.histogram.emplace_back(0);
+	largest_area_from_histogram(program, 0);
+	rectangle_print(program.largest_rectangle);
+	int			idx = 1;
 	while (std::getline(inputMap, lineData))
 	{
 		lineDataSize = lineData.size();
 		for (size_t idx = 0; idx < lineDataSize; idx++)
 		{
 			if (lineData[idx] == '.')
-				buffer[idx] += 1;
+				program.histogram[idx] += 1;
 			else
-				buffer[idx] = 0;
+				program.histogram[idx] = 0;
 		}
-		dash::printBufferElements(buffer);
+		largest_area_from_histogram(program, idx);
+		rectangle_print(program.largest_rectangle);
+		idx++;
 	}
 }
 

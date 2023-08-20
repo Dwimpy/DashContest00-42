@@ -36,13 +36,20 @@ def largest_rectangle_histogram(heights):
     i = 0
     
     while i < len(heights):
+        # If this bar is higher than the bar on top stack, push it to stack
         if not stack or heights[i] >= heights[stack[-1]]:
             stack.append(i)
+            print(f'append index: {i} value: {heights[i]}')
             i += 1
         else:
             top = stack.pop()
+            print(f'pop index   : {top} value: {heights[top]}')
+            # Calculate the area with heights[top] stack as smallest bar
             width = i if not stack else i - stack[-1] - 1
+            print(f'width       : index: {i} last: {stack[-1] if stack else 9999} width: {width}')
             max_area = max(max_area, heights[top] * width)
+            print(f'max         : {max_area} (height: {heights[top]} width: {width})')
+        print(f'stack: {stack}\n')
     
     while stack:
         top = stack.pop()
@@ -86,7 +93,8 @@ matrix = [
     [1, 1, 1, 1, 1, 1],
 ]
 
-print("Original matrix:")
-print_matrix(matrix)
-largest_area, new_heights = maximal_rectangle(matrix)
-print("\nLargest area:", largest_area)
+print(largest_rectangle_histogram([2, 1, 5, 6, 2, 3]))
+# print("Original matrix:")
+# print_matrix(matrix)
+# largest_area, new_heights = maximal_rectangle(matrix)
+# print("\nLargest area:", largest_area)

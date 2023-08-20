@@ -44,9 +44,9 @@ SRC:= $(MAIN_SRC)
 
 # This in effect makes all the object files to be compiled in the OBJ_DIR directory
 
-SRC_DIR:=src
+SRC_DIR:=.
 OBJ_DIR:=obj
-OBJ:= $(addprefix $(OBJ_DIR)/,$(subst /,@,$(SRC:.c=.o)))
+OBJ:= $(addprefix $(OBJ_DIR)/,$(subst /,@,$(SRC:.cpp=.o)))
 
 #################################
 ######     Main rules     #######
@@ -72,7 +72,7 @@ $(NAME): $(OBJ)
 #########################################
 
 .SECONDEXPANSION:
-$(OBJ_DIR)/%.o: $(SRC_DIR)/$$(subst @,/,$$*).c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/$$(subst @,/,$$*).cpp
 	@$(CC) $(CFLAGS) $(addprefix -iquote ,$(INCLUDE_DIR)) $(addprefix -I ,$(LIB_INCLUDE_DIR)) -c $< -o $@
 
 $(OBJ): $(OBJ_DIR)

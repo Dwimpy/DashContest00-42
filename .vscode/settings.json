@@ -5,6 +5,7 @@
         "*.hpp": "cpp",
         "*.h": "c",
         "Makefile": "makefile",
-        "*.sh": "shellscript"
+        "*.sh": "shellscript",
+        "vector": "cpp"
     }
 }

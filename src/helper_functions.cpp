@@ -25,7 +25,6 @@ void	dash::createHeightMap(std::ifstream &inputMap, struct program &program)
 		else
 			program.histogram.emplace_back(0);
 	largest_area_from_histogram(program, 0);
-	rectangle_print(program.largest_rectangle);
 	int			idx = 1;
 	while (std::getline(inputMap, lineData))
 	{
@@ -38,9 +37,9 @@ void	dash::createHeightMap(std::ifstream &inputMap, struct program &program)
 				program.histogram[idx] = 0;
 		}
 		largest_area_from_histogram(program, idx);
-		rectangle_print(program.largest_rectangle);
 		idx++;
 	}
+	rectangle_print_corners(program.largest_rectangle);
 }
 
 void	dash::printBufferElements(Buffer const &buffer)

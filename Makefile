@@ -3,7 +3,12 @@ NAME_RNG	:= rng
 
 CC		:= c++
 RM		:= rm
-FLAGS	:= -g -std=c++11 #-Wall -Werror -Wextra
+CFLAGS	:= -std=c++11 -Wall -Werror -Wextra
+
+ifdef FSANITIZE
+	CFLAGS+= -g3 -fsanitize=address
+	LDFLAGS+= -g3 -fsanitize=address
+endif
 
 INCLUDE := ./include
 SRC_DIR	:= ./src
@@ -33,7 +38,7 @@ $(NAME):	$(OBJS_BSQ) $(MAINFILE) | $(OBJ_DIR)
 	$(CC) $(HEADERS) $(OBJS_BSQ) $(MAINFILE) -o $(NAME) $(FLAGS)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) $(HEADERS)  -c $< -o $@ $(FLAGS)
+	$(CC) $(HEADERS)  -c $< -o $@ $(CFLAGS)
 
 
 rng: $(NAME_RNG) $(MAIN_FILE_RNG)

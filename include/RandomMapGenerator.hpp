@@ -28,5 +28,5 @@ class RandomMapGenerator
 	size_t									_gridSize;
 	double									_obstacleProbability;
 	std::uniform_real_distribution<double>	_distribution;
-	std::vector<std::vector<char>>			_map;
+	std::vector<std::vector<char> >			_map;
 };

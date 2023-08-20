@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 		rng.setGridSize(std::stoi(argv[1]));
 		rng.setObstacleProbability(std::stof(argv[2]));
 		rng.generateMap();
-		rng.printMap();
+		// rng.printMap();
 		rng.outputMapToFile();
 			return (EXIT_SUCCESS);
 	}

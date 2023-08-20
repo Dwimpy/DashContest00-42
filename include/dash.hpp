@@ -39,7 +39,8 @@ namespace dash
 
 	void	largest_area_from_histogram(struct program& program, int row_index);
 
-	std::ifstream	openInputMap(std::string const &fileName);
+
+	void			openInputMap(std::ifstream &inputMap, std::string const &fileName);
 	void			createHeightMap(std::ifstream &inputMap, struct program &program);
 	void			printBufferElements(Buffer const &buffer);
 

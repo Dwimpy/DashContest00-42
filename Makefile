@@ -3,7 +3,7 @@ NAME_RNG	:= rng
 
 CC		:= c++
 RM		:= rm
-CFLAGS	:= -std=c++11 -Wall -Werror -Wextra
+CFLAGS	:= -O3 -std=c++17 -Wall -Werror -Wextra
 
 ifdef FSANITIZE
 	CFLAGS+= -g3 -fsanitize=address
@@ -21,7 +21,6 @@ HEADERS := -I $(INCLUDE)
 SRC_BSQ		:= helper_functions.cpp largest_square.cpp rectangle.cpp
 
 SRC_RND		:= RandomMapGenerator.cpp
-
 
 SRCS_BSQ    := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(SRC_BSQ))
 OBJS_BSQ    := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS_BSQ))

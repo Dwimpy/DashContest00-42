@@ -10,6 +10,6 @@ int main(int argc, char **argv)
 	std::ifstream			inputMap;
 
 	dash::rectangle_empty(program.largest_rectangle);
-	inputMap = dash::openInputMap(argv[1]);
+	dash::openInputMap(inputMap, argv[1]);
 	dash::createHeightMap(inputMap, program);
 }

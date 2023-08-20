@@ -1,16 +1,13 @@
 #include "dash.hpp"
 
-std::ifstream	dash::openInputMap(std::string const &fileName)
+void	dash::openInputMap(std::ifstream &inputMap, std::string const &fileName)
 {
-	std::ifstream	inputMap;
-
 	inputMap.open(fileName);
 	if (!inputMap.is_open())
 	{
 		std::cerr << "Error opening map" << std::endl;
 		exit(EXIT_FAILURE);
 	}
-	return (inputMap);
 }
 
 void	dash::createHeightMap(std::ifstream &inputMap, struct program &program)

@@ -8,7 +8,7 @@
 # include <iostream>
 # include <cstdlib>
 # include <istream>
-
+# include "RandomMapGenerator.hpp"
 
 namespace dash
 {

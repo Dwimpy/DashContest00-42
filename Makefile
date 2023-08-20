@@ -11,7 +11,7 @@ MAINFILE := main.cpp
 
 HEADERS := -I $(INCLUDE)
 
-SRC		:= helper_functions.cpp
+SRC		:= helper_functions.cpp RandomMapGenerator.cpp
 
 SRCS    := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(SRC))
 OBJS    := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
